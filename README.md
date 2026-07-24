@@ -4,9 +4,16 @@ This repository is a Flutter sandbox for iterating on ArcGIS integration.
 
 ## Current Status
 
-- Base Flutter app is running successfully.
-- ArcGIS SDK integration is the next step.
-- A previous attempt with `arcgis_maps: 300.0.0+4935` failed under the current Android toolchain setup (AGP 9.0.1 + Kotlin 2.3.20), so migration work is being retried from a clean baseline.
+- ArcGIS Flutter SDK is integrated (`arcgis_maps: 300.0.0+4935`).
+- The app entrypoint uses `ArcGISMapView` with `controllerProvider` in `lib/main.dart`.
+- Android build settings are pinned for compatibility with this setup.
+
+## Current Android Build Stack
+
+- Gradle wrapper: `8.14` in `android/gradle/wrapper/gradle-wrapper.properties`
+- Android Gradle Plugin: `8.11.1` in `android/settings.gradle.kts`
+- Kotlin Android plugin: `2.2.20` in `android/settings.gradle.kts`
+- Android `minSdk`: `28` in `android/app/build.gradle.kts` (required by ArcGIS Flutter SDK)
 
 ## Prerequisites
 
@@ -29,11 +36,10 @@ flutter run
 
 ## ArcGIS Migration Plan
 
-1. Add ArcGIS Flutter SDK dependency in `pubspec.yaml`.
-2. Configure authentication/API key in `lib/secrets.dart`.
-3. Replace the sample UI in `lib/main.dart` with a minimal ArcGIS map view.
-4. Validate Android and iOS platform setup requirements for the SDK.
-5. Run on emulator/device and verify map rendering.
+1. Keep the API key in `lib/secrets.dart` (local only).
+2. Verify Android emulator/device readiness before install attempts.
+3. Add map layers, operational data, and interactions incrementally.
+4. Run and validate after each mapping feature change.
 
 ## Secrets
 
