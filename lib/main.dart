@@ -1,64 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:arcgis_maps/arcgis_maps.dart';
+
+import 'secrets.dart';
 
 void main() {
-  runApp(const MiniSampleApp());
+  ArcGISEnvironment.apiKey = arcgisApiKey;
+  runApp(const ArcGISPracticeApp());
 }
 
-class MiniSampleApp extends StatelessWidget {
-  const MiniSampleApp({super.key});
+class ArcGISPracticeApp extends StatelessWidget {
+  const ArcGISPracticeApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Mini Emulator Sample',
+      title: 'ArcGIS Flutter Practice',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
         useMaterial3: true,
       ),
-      home: const SampleHomePage(),
+      home: const ArcGISHomePage(),
     );
   }
 }
 
-class SampleHomePage extends StatefulWidget {
-  const SampleHomePage({super.key});
-
-  @override
-  State<SampleHomePage> createState() => _SampleHomePageState();
-}
-
-class _SampleHomePageState extends State<SampleHomePage> {
-  int _tapCount = 0;
+class ArcGISHomePage extends StatelessWidget {
+  const ArcGISHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final map = ArcGISMap.withBasemapStyle(BasemapStyle.arcGISStreets);
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Flutter Emulator Check')),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(Icons.phone_android, size: 56),
-              const SizedBox(height: 16),
-              const Text(
-                'If you can see this screen,\n'
-                'your sample app is running on the emulator.',
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 20),
-              Text('Tap count: $_tapCount'),
-              const SizedBox(height: 12),
-              FilledButton.icon(
-                onPressed: () => setState(() => _tapCount++),
-                icon: const Icon(Icons.touch_app),
-                label: const Text('Tap me'),
-              ),
-            ],
-          ),
-        ),
+      appBar: AppBar(title: const Text('ArcGIS Map')),
+      body: ArcGISMapView(
+        controllerProvider: () {
+          return ArcGISMapView.createController()..arcGISMap = map;
+        },
       ),
     );
   }

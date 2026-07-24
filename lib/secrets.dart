@@ -1,1 +1,2 @@
-const String arcgisApiKey = "YOUR_API_KEY";
+const String arcgisApiKey =
+    "AAPTaKmqSblRSMKDVV_avlFF6ig..i5DCCNg8A8vdlQdLstqgxwSMfpLoe5KgyGNt18Q8rxxeU4Avage6sjYPl7ZMh283ZEvpk31ifcPxEoKiA1TOXbeIamPeYd2AvNHLTeGRb0qQTy8aQFGp6wTyPSQKOU_VYZ5UcoInz888pDvor2QTgIxaIt0yj4dzq1pgJIoc5FvE9VpsRC9b5k4r4sOT9Q0XIxswDX5G7foZi5-GWT-yzcvfcmbE5ousLTNkhAhbB6nWIM0RPJ7vPllfiBBdulkI2YAJpBM.AT1_msXj2IFb";
